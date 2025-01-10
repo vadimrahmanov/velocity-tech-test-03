@@ -4,7 +4,7 @@
 
 You've been tasked with helping Digital Velocity bring a fresh collection page and a functional cart drawer to life. Your goal is to build these features from scratch, incorporating a structure for styling, JavaScript, and HTML that best suits your development style and approach.
 
-The purpose of this exercise isn't to complete everything to perfection but rather to demonstrate your thought process, coding practices, and overall implementation skills. You're free to spend as much or as little time on it as you're comfortable with.
+The purpose of this exercise isn't to complete everything but rather to demonstrate your thought process, coding practices, and overall implementation skills. You're free to spend as much or as little time on it as you're comfortable with.
 
 ### Challange
 
