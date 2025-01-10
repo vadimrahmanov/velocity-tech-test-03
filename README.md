@@ -29,6 +29,10 @@ shopify theme list (find the theme ID for the one you just pushed)
 shopify theme dev --store=velocity-tech-test --password=shptka_ea1e90de841c7cdaeb2ce101dd28caa6 --theme=<theme-ID>
 ```
 
+You may be asked for a store password which is the following: piepea
+
+Please feel free to use your own development store if you'd prefer. We have provided this for ease of getting started.
+
 ## Project Designs
 
 URL: https://www.figma.com/design/TkWkSt0pv0zW2wCvNgcvQq/Velocity---Tech-Test?node-id=0-1&m=dev&t=h5BxnTuRw1MdlGcn-1
