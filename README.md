@@ -18,7 +18,7 @@ The purpose of this exercise isn't to complete everything but rather to demonstr
 
 ## Getting Started
 
-To get started and assist the apprentice, follow the setup steps below:
+To get started follow the setup steps below:
 
 1. Fork this repository and navigate into the project directory.
 2. Run the following commands:
