@@ -8,9 +8,6 @@ The purpose of this exercise isn't to complete everything to perfection but rath
 
 ### Challange
 
-Your task is to:
-x
-
 1. #### Collection Page
 
     Build a Collection Page that displays a grid of products, styled and structured to match the design specifications.
