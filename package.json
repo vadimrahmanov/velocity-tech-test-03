@@ -7,8 +7,8 @@
     "dev": "npm run serve & npm run watch",
     "watch": "vite build --config vite.config.dev.js --watch",
     "build": "vite build --config vite.config.prod.js",
-    "serve": "shopify theme dev --store=vr-velocity-test --password=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 --live-reload=full-page",
-    "push": "shopify theme push --store=vr-velocity-test --password=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",
+    "serve": "shopify theme dev --store=vr-velocity-test --password=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 --live-reload=full-page --store-password=gapraw",
+    "push": "shopify theme push --store=vr-velocity-test --password=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 --store-password=gapraw",
     "lint": "eslint 'src/**/*.ts'"
   },
   "devDependencies": {
