@@ -65,3 +65,11 @@ _site
 secrets.json
 .jekyll-metadata
 .ruby-version
+.shopify
+node_modules
+node_modules/*
+assets/*.dev.js
+assets/*.dev.css
+assets/**/*.min.css
+assets/**/*.min.js
+assets/**/*.map
