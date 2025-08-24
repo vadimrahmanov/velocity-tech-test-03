@@ -1,0 +1,29 @@
+<nav class="header__container container">
+  {% render 'logo', logo: section.settings.logo, width: section.settings.logo_width %}
+  {% render 'header-icon-links' %}
+</nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "header",
+  "class": "header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 100,
+      "max": 200,
+      "step": 1,
+      "unit": "px",
+      "label": "Logo Width",
+      "default": 133
+    }
+  ]
+}
+{% endschema %}

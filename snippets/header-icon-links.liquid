@@ -1,0 +1,19 @@
+{% comment %}
+  {% render 'header-icon-links' %}
+{% endcomment %}
+
+<ul class="header-icon-links">
+  <li>
+    <a class="header-icon-links__link" href="{{ routes.account_url }}">
+      <span class="visually-hidden">{{ 'accessibility.account_link' | t }}</span>
+      {% render 'icon-user' %}
+    </a>
+  </li>
+  <li>
+    <a class="header-icon-links__link" href="{{ routes.cart_url }}">
+      <span class="visually-hidden">{{ 'accessibility.cart_link' | t }}</span>
+      {% render 'icon-cart' %}
+      <span class="header-icon-links__cart-count" data-header-cart-count>{{ cart.item_count }}</span>
+    </a>
+  </li>
+</ul>
