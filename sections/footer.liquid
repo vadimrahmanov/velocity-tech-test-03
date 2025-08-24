@@ -1,0 +1,82 @@
+<div class="footer__container container">
+  <div class="footer__content">
+    {% render 'logo', logo: section.settings.logo, width: section.settings.logo_width %}
+    {% if section.settings.description != blank %}
+      <p class="footer__description">{{ section.settings.description }}</p>
+    {% endif %}
+  </div>
+  {% if section.settings.menu_1 != blank or section.settings.menu_2 != blank %}
+    <div class="footer__menus">
+      {% if section.settings.menu_1 %}
+        <ul class="footer__menus-list">
+          {% for link in section.settings.menu_1.links %}
+            <li class="footer__menus-item">
+              <a class="footer__menus-link" href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      {% if section.settings.menu_2 %}
+        <ul class="footer__menus-list">
+          {% for link in section.settings.menu_2.links %}
+            <li class="footer__menus-item">
+              <a class="footer__menus-link" href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "footer",
+  "class": "footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 100,
+      "max": 200,
+      "step": 1,
+      "unit": "px",
+      "label": "Logo Width",
+      "default": 133
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "header",
+      "content": "Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_1",
+      "label": "Menu 1"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_2",
+      "label": "Menu 2"
+    }
+  ]
+}
+{% endschema %}
