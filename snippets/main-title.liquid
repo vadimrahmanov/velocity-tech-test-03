@@ -1,0 +1,14 @@
+{% comment %}
+  Page title for accessible, SEO and heading's hierarchy.
+{% endcomment %}
+
+<h1 class="visually-hidden">
+  {% case template.name %}
+    {% when 'index' %}
+      {{ 'accessibility.homepage_main_heading' | t: shop_name: shop.name }}
+    {% when 'collection' %}
+      {{ 'accessibility.collection_main_heading' | t }}
+    {% else %}
+      {{ shop.name }}
+  {% endcase %}
+</h1>
