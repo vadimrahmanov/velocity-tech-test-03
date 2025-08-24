@@ -1,20 +1,30 @@
 <!doctype html>
 <html lang="{{ shop.locale }}">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="">
-  <link rel="canonical" href="{{ canonical_url }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <title>{{ shop.name }}</title>
+    <meta name="description" content="Store description">
+    {{ content_for_header }}
+    {{ 'montserrat-regular.woff2' | asset_url | preload_tag: as: 'font/woff2', crossorigin: '' }}
+    {{ 'montserrat-bold.woff2' | asset_url | preload_tag: as: 'font/woff2', crossorigin: '' }}
+    {% assign filetype = 'min' %}
+    {% if theme.role == 'development' %}
+      {% assign filetype = 'dev' %}
+    {% endif %}
+    {% capture main_css_file %}styles.{{ filetype }}.css{% endcapture %}
+    {{ main_css_file | asset_url | stylesheet_tag }}
+  </head>
 
-  <title>{{ shop.name }}</title>
-
-  <meta name="description" content="">
-
-  {{ content_for_header }}
-</head>
-
-<body>
-  {{ content_for_layout }}
-</body>
+  <body>
+    {{ content_for_layout }}
+    {% if theme.role == 'development' %}
+      {% render 'scripts-dev' %}
+    {% else %}
+      {% render 'scripts-prod' %}
+    {% endif %}
+  </body>
 </html>
