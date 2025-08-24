@@ -1,5 +1,15 @@
 @use "../utils/variables" as var;
+@use "../utils/mixins" as mixin;
 
 body {
   font-family: var.$montserrat;
+  color: var.$black;
+}
+
+.visually-hidden {
+  @include mixin.visually-hidden;
+}
+
+.skip-content:not(:focus):not(:active) {
+  @include mixin.visually-hidden;
 }

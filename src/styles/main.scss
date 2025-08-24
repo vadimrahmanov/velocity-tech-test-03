@@ -1,3 +1,12 @@
+// Base & Utilities
 @use "./base/reset";
 @use "./base/fonts";
+@use "./utils/utilities";
 @use "./base/global";
+
+// Snippets
+@use "./snippets/logo";
+@use "./snippets/header-icon-links";
+
+// Sections
+@use "./sections/header";

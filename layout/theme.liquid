@@ -20,7 +20,14 @@
   </head>
 
   <body>
-    {{ content_for_layout }}
+    <a class="skip-content" href="#MainContent">{{ 'accessibility.skip-content' | t }}</a>
+    {% sections 'header-group' %}
+
+    <main id="MainContent" role="main">
+      {% render 'main-title' %}
+      {{ content_for_layout }}
+    </main>
+
     {% if theme.role == 'development' %}
       {% render 'scripts-dev' %}
     {% else %}

@@ -1,0 +1,11 @@
+{% comment %}
+  {% render 'logo', logo: image, width: logo_width %}
+{% endcomment %}
+
+{% if logo != blank %}
+  {% assign logo_width = width | times: 2 | default: 266 %}
+  <a class="logo" href="{{ shop.url }}" style="--logo-width: {{ logo_width | divided_by: 2 }}px;">
+    <span class="visually-hidden">{{ shop.title }}</span>
+    {{ logo | image_url: width: logo_width | image_tag: alt: logo.alt | default: shop.name }}
+  </a>
+{% endif %}

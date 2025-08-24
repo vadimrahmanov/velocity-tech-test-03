@@ -1,0 +1,29 @@
+@use "../utils/variables" as var;
+
+.header-icon-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  &__link {
+    display: flex;
+    padding: 8px;
+    position: relative;
+  }
+
+  &__cart-count {
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: var.$green;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

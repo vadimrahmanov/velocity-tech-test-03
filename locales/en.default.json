@@ -1,1 +1,9 @@
-{}
+{
+  "accessibility": {
+    "skip-content": "Skip to content",
+    "homepage_main_heading": "{{ shop_name }} Homepage",
+    "collection_main_heading": "Collection Page",
+    "account_link": "Login/Register",
+    "cart_link": "Cart"
+  }
+}
