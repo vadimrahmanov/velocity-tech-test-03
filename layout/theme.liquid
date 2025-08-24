@@ -28,6 +28,8 @@
       {{ content_for_layout }}
     </main>
 
+    {% sections 'footer-group' %}
+
     {% if theme.role == 'development' %}
       {% render 'scripts-dev' %}
     {% else %}
