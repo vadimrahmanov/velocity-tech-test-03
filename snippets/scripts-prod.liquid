@@ -1,0 +1,8 @@
+{% # theme-check-disable MissingAsset %}
+<script type="module" defer="defer" src="{{ 'scripts.min.js' | asset_url }}"></script>
+
+{% if template contains 'collection' %}
+  <script type="module" defer="defer" src="{{ 'template.collection.min.js' | asset_url }}"></script>
+{% else %}
+  <link rel="prefetch" href="{{ 'template.collection.min.js' | asset_url }}" as="script">
+{% endif %}
