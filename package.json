@@ -1,0 +1,36 @@
+{
+  "name": "velocity-tech-test",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run serve & npm run watch",
+    "watch": "vite build --config vite.config.dev.js --watch",
+    "build": "vite build --config vite.config.prod.js",
+    "serve": "shopify theme dev --store=vr-velocity-test --password=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 --live-reload=full-page",
+    "push": "shopify theme push --store=vr-velocity-test --password=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",
+    "lint": "eslint 'src/**/*.ts'"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "@shopify/prettier-plugin-liquid": "^1.9.3",
+    "@stylistic/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.34.1",
+    "@typescript-eslint/parser": "^8.34.1",
+    "eslint": "^9.22.0",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-sonarjs": "^3.0.2",
+    "globals": "^16.0.0",
+    "lightningcss": "^1.29.2",
+    "sass": "^1.90.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.2",
+    "vite-plugin-checker": "^0.9.3"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
+  }
+}
