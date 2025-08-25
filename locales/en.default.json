@@ -13,6 +13,12 @@
     "homepage_main_heading": "{{ shop_name }} Homepage",
     "collection_main_heading": "Collection Page",
     "account_link": "Login/Register",
-    "cart_link": "Cart"
+    "cart_link": "Cart",
+    "quantity_selector": {
+      "quantity_input": "Quantity Input",
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity"
+    },
+    "wishlist_button": "Add or remove from wishlist"
   }
 }
