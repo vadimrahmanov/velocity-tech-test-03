@@ -7,7 +7,10 @@
 // Snippets
 @use "./snippets/logo";
 @use "./snippets/header-icon-links";
+@use "./snippets/product-card";
+@use "./snippets/quantity-selector";
 
 // Sections
 @use "./sections/header";
 @use "./sections/footer";
+@use "./sections/main-collection";

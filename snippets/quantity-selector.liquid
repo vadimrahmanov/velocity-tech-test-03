@@ -1,0 +1,34 @@
+{% comment %}
+  {% render 'quantity-selector', product: product %}
+{% endcomment %}
+
+{% comment %} Get cart to display correct quantity amounts {% endcomment %}
+{% assign line_item = cart.items | where: 'variant_id', product.selected_or_first_available_variant.id | first %}
+{% assign product_qty = line_item.quantity | default: 0 %}
+{% assign product_line_key = line_item.key | default: '' %}
+
+<div class="quantity-selector{% unless product.available %} quantity-selector--oos{% endunless %}" data-qty-selector>
+  <button class="quantity-selector__button" type="button" data-qty-button="decrease">
+    <span class="visually-hidden">{{ 'accessibility.quantity_selector.decrease' | t }}</span>
+    {% render 'icon-minus' %}
+  </button>
+  <label class="visually-hidden" for="quantity-selector-{{ product.id }}">
+    {{- 'accessibility.quantity_selector.quantity_input' | t -}}
+  </label>
+  <input
+    class="quantity-selector__input"
+    type="number"
+    id="quantity-selector-{{ product.id }}"
+    name="quantity"
+    value="{{ product_qty }}"
+    min="0"
+    max="50"
+    data-qty-line-item-key="{{ product_line_key }}"
+    data-qty-input
+  >
+  <button class="quantity-selector__button" type="button" data-qty-button="increase">
+    <span class="visually-hidden">{{ 'accessibility.quantity_selector.increase' | t }}</span>
+    {% render 'icon-plus' %}
+  </button>
+  {% render 'icon-spinner' %}
+</div>

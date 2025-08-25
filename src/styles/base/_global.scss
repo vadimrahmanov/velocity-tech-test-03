@@ -17,10 +17,27 @@ main {
   flex: 1;
 }
 
+// Visually Hidden for accessibility
 .visually-hidden {
   @include mixin.visually-hidden;
 }
 
 .skip-content:not(:focus):not(:active) {
   @include mixin.visually-hidden;
+}
+
+// Buttons
+button {
+  @media (min-width: var.$desktop) {
+    cursor: pointer;
+  }
+}
+
+// Loading spinner
+.icon-spinner {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
