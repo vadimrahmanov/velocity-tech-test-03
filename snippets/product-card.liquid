@@ -1,0 +1,72 @@
+{% comment %}
+  {% render 'product-card', product: product %}
+{% endcomment %}
+
+<article
+  class="product-card"
+  {% if product.selected_or_first_available_variant.available %}
+    data-product-card="{{ product.selected_or_first_available_variant.id }}"
+  {% endif %}
+>
+  <div class="product-card__meta">
+    {% if product.metafields.custom.product_badges != blank %}
+      <ul class="product-card__badges">
+        {% for badge in product.metafields.custom.product_badges.value limit: 2 %}
+          <li class="product-card__badges-item" style="--badge-color: {{ badge.color }};">
+            {{ badge.svg_markup }}
+            <p>{{ badge.text }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <button class="product-card__wishlist" type="button">
+      <span class="visually-hidden">{{ 'accessibility.wishlist_button' | t }}</span>
+      {% render 'icon-wishlist' %}
+    </button>
+  </div>
+  {% if product.featured_image != blank %}
+    <a class="product-card__image" href="{{ product.url }}">
+      <span class="visually-hidden">{{ product.title }}</span>
+      {{ product.featured_image | image_url: width: 626, height: 626 | image_tag: alt: product.featured_image.alt }}
+    </a>
+  {% else %}
+    {{ 'product-1' | placeholder_svg_tag }}
+  {% endif %}
+  <div class="product-card__info">
+    <h3 class="product-card__title">{{ product.title }}</h3>
+    {% comment %}
+      For the purpose of this test task I am using product.description to display size, but in a real project I would store this data in a dedicated field.
+    {% endcomment %}
+    {% if product.description != blank %}
+      <p class="product-card__description">{{ product.description | strip_html }}</p>
+    {% endif %}
+  </div>
+  <div class="product-card__controls">
+    {% render 'quantity-selector', product: product %}
+    <p class="product-card__price">{{ product.price | money }}</p>
+  </div>
+</article>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{ product.title | escape }}",
+    "image": "{{ product.featured_image | image_url: width: 800, height: 800 | prepend: 'https:' }}",
+    "description": "{{ product.description | strip_html | escape | truncate: 200 }}"{% if product.sku %},
+    "sku": "{{ product.sku | escape }}"{% endif %},
+    "offers": {
+      "@type": "Offer",
+      "url": "{{ shop.url }}{{ product.url }}",
+      "priceCurrency": "{{ shop.currency }}",
+      "price": "{{ product.price | divided_by: 100.0 | round: 2 }}",
+      "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"{% if product.compare_at_price > product.price %},
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "{{ product.price | divided_by: 100.0 | round: 2 }}",
+        "priceCurrency": "{{ shop.currency }}",
+        "referencePrice": "{{ product.compare_at_price | divided_by: 100.0 | round: 2 }}"
+      }{% endif %}
+    }
+  }
+</script>
