@@ -13,7 +13,7 @@
     <a class="header-icon-links__link" href="{{ routes.cart_url }}">
       <span class="visually-hidden">{{ 'accessibility.cart_link' | t }}</span>
       {% render 'icon-cart' %}
-      <span class="header-icon-links__cart-count" data-header-cart-count>{{ cart.item_count }}</span>
+      <span class="header-icon-links__cart-count" data-cart-count>{{ cart.item_count }}</span>
     </a>
   </li>
 </ul>

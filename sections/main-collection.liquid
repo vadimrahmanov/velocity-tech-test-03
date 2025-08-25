@@ -1,0 +1,19 @@
+<div class="collection__container container">
+  <h2 class="collection__heading">{{ collection.title }}</h2>
+  <ul class="collection__products">
+    {% for product in collection.products %}
+      <li>
+        {% render 'product-card', product: product %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Main",
+  "tag": "section",
+  "class": "collection",
+  "settings": []
+}
+{% endschema %}
