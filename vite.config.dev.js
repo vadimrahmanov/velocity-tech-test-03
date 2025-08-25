@@ -18,6 +18,11 @@ const input = {
 const buildTemplates = () => {
   return {
     name: 'build-template',
+    buildStart() {
+      templateFiles.forEach(file => {
+        this.addWatchFile(path.resolve(templatesDir, file));
+      });
+    },
     async buildEnd() {
       for (const file of templateFiles) {
         const inputPath = path.resolve(templatesDir, file);
@@ -31,6 +36,13 @@ const buildTemplates = () => {
             terser()
           ],
         });
+
+        if (bundle.watchFiles) {
+          for (const file of bundle.watchFiles) {
+            this.addWatchFile(file);
+          }
+        }
+
         await bundle.write({
           file: outputPath,
           format: 'es',
