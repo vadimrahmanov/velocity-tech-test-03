@@ -1,5 +1,5 @@
 {% comment %}
-  {% render 'quantity-selector', product: product %}
+  {% render 'quantity-selector', product: product, is_cart_drawer: true/false %}
 {% endcomment %}
 
 {% comment %} Get cart to display correct quantity amounts {% endcomment %}
@@ -8,17 +8,21 @@
 {% assign product_line_key = line_item.key | default: '' %}
 
 <div class="quantity-selector{% unless product.available %} quantity-selector--oos{% endunless %}" data-qty-selector>
-  <button class="quantity-selector__button" type="button" data-qty-button="decrease">
+  <button
+    class="quantity-selector__button{% if is_cart_drawer %} quantity-selector__button--cart{% endif %}"
+    type="button"
+    data-qty-button="decrease"
+  >
     <span class="visually-hidden">{{ 'accessibility.quantity_selector.decrease' | t }}</span>
     {% render 'icon-minus' %}
   </button>
-  <label class="visually-hidden" for="quantity-selector-{{ product.id }}">
+  <label class="visually-hidden" for="quantity-selector-{{ product.id }}{% if is_cart_drawer %}-cart{% endif %}">
     {{- 'accessibility.quantity_selector.quantity_input' | t -}}
   </label>
   <input
-    class="quantity-selector__input"
+    class="quantity-selector__input{% if is_cart_drawer %} quantity-selector__input--cart{% endif %}"
     type="number"
-    id="quantity-selector-{{ product.id }}"
+    id="quantity-selector-{{ product.id }}{% if is_cart_drawer %}-cart{% endif %}"
     name="quantity"
     value="{{ product_qty }}"
     min="0"
@@ -26,7 +30,11 @@
     data-qty-line-item-key="{{ product_line_key }}"
     data-qty-input
   >
-  <button class="quantity-selector__button" type="button" data-qty-button="increase">
+  <button
+    class="quantity-selector__button{% if is_cart_drawer %} quantity-selector__button--cart{% endif %}"
+    type="button"
+    data-qty-button="increase"
+  >
     <span class="visually-hidden">{{ 'accessibility.quantity_selector.increase' | t }}</span>
     {% render 'icon-plus' %}
   </button>

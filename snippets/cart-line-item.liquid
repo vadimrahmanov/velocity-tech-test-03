@@ -1,0 +1,31 @@
+{% comment %}
+  {% render 'cart-line-item', line_item: line_item, index: forloop.index %}
+{% endcomment %}
+
+<div class="cart-line-item" data-cart-line-item>
+  <div class="cart-line-item__content">
+    <a class="cart-line-item__image" href="{{ line_item.product.url }}">
+      <span class="visually-hidden">{{ line_item.product.title }}</span>
+      {{
+        line_item.product.featured_image
+        | image_url: width: 80, height: 80
+        | image_tag: alt: line_item.product.featured_image.alt
+      }}
+    </a>
+    <div class="cart-line-item__description">
+      <p class="cart-line-item__title">{{ line_item.title }}</p>
+      {% comment %}
+        For the purpose of this test task I am using product.description to display variant/option, but in a real project I would store this data in a dedicated field.
+      {% endcomment %}
+      <p class="cart-line-item__option">{{ line_item.product.description | strip_html }}</p>
+    </div>
+    <button class="cart-line-item__remove" type="button" data-cart-line-item-remove="{{ line_item.key }}">
+      <span class="visually-hidden">{{ 'accessibility.cart.remove_button' | t }}</span>
+      {% render 'icon-bin' %}
+    </button>
+  </div>
+  <div class="cart-line-item__controls">
+    <p class="cart-line-item__price">{{ line_item.original_line_price | money }}</p>
+    {% render 'quantity-selector', product: line_item.product, is_cart_drawer: true %}
+  </div>
+</div>

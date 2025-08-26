@@ -30,6 +30,22 @@ main {
 button {
   @media (min-width: var.$desktop) {
     cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+// Links hover effect
+a {
+  @media (min-width: var.$desktop) {
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 }
 

@@ -1,0 +1,136 @@
+@use "./cart-line-item";
+@use "../utils/variables" as var;
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100dvh;
+  padding: 20px;
+  background-color: var.$light-gray;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(120%);
+  max-width: 320px;
+  border: 1px solid var.$medium-gray;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  z-index: 100;
+
+  &--open {
+    transform: translateX(0);
+  }
+
+  &__close {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: -35px;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    position: relative;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var.$medium-gray;
+  }
+
+  &__heading {
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  &__clear-btn {
+    font-size: 14px;
+    font-weight: 700;
+    color: var.$gray;
+    text-decoration: underline;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+    overflow: auto;
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__total-text {
+    font-size: 14px;
+    align-self: flex-end;
+  }
+
+  &__total-price {
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  &__loyalty {
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    background-image: linear-gradient(115.77deg, #FEC520 5.06%, #F89D31 53.6%, #F96D00 105.27%);
+    border-radius: 6px;
+    padding: 10px 24px;
+  }
+
+  &__checkout {
+    font-weight: 500;
+    color: var.$white;
+    display: flex;
+    justify-content: center;
+    background-color: var.$black;
+    padding: 10px 24px;
+    border-radius: 40px;
+  }
+
+  &__empty {
+    align-self: center;
+    margin: auto 0;
+  }
+}
+
+.cart-drawer-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.6;
+  background-color: var.$white;
+  backdrop-filter: blur(4px);
+  z-index: 50;
+}
+
+// states when drawer is open
+body:has([aria-expanded="true"]) {
+  overflow-y: hidden;
+
+  .cart-drawer-overlay {
+    display: block;
+  }
+}

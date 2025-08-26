@@ -4,11 +4,12 @@
 @use "./utils/utilities";
 @use "./base/global";
 
-// Snippets
-@use "./snippets/logo";
-@use "./snippets/header-icon-links";
-@use "./snippets/product-card";
-@use "./snippets/quantity-selector";
+// Components
+@use "./components/logo";
+@use "./components/header-icon-links";
+@use "./components/product-card";
+@use "./components/quantity-selector";
+@use "./components/cart-drawer";
 
 // Sections
 @use "./sections/header";

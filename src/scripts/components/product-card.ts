@@ -1,55 +1,56 @@
-import initQuantitySelector from './quantity-selector';
 import addCart from '../lib/addCart';
 import changeCart from '../lib/changeCart';
+import renderCartDrawer from './cart-drawer/render-cart-drawer';
+import { DOM } from '../utils/constants';
 
 const initProductCard = (): void => {
-  const productCardEls = document.querySelectorAll<HTMLElement>('[data-product-card]');
-  if (!productCardEls.length) return;
+  // Product Cards container (I would use something more specific if it would be real project/website)
+  const productCardsContainer = document.querySelector<HTMLDivElement>('[data-collection-container]');
+  if (!productCardsContainer) return;
 
-  const changeProductQty = async (input: HTMLInputElement, state: { inCart: boolean }, variantId: number): Promise<void> => {
-    const currentValue = Number(input.value);
-    const qtySelector = input.parentElement;
+  // Delegated inputs for quantity changes
+  productCardsContainer.addEventListener('change', async (evt: Event): Promise<void> => {
+    const qtyInput = (evt.target as HTMLElement).closest<HTMLInputElement>(DOM.QTY_INPUT);
+    if (!qtyInput) return;
 
-    // Loading state function to disable qty selector and show spinner
+    const card = qtyInput.closest<HTMLElement>('[data-product-card]');
+    if (!card) return;
+
+    const variantId = Number(card.dataset.productCard); // variant id from data-attribute
+    const currentValue = Number(qtyInput.value); // Current quantity input value
+    const qtySelector = qtyInput.parentElement;
+
+    // Toggle loading class on the quantity selector
     const setLoadingState = (loading: boolean): void => {
       qtySelector?.classList.toggle('quantity-selector--loading', loading);
     };
 
-    if (!state.inCart && currentValue > 0) { // check if product isn't in the cart and input value more than 0
-      setLoadingState(true);
-      const addedItem = await addCart(variantId, currentValue); // adding product to the cart
+    // If product isn't in the cart - we are adding product
+    if (!String(qtyInput.dataset.qtyLineItemKey) && currentValue > 0) {
+      setLoadingState(true); // show loading state (spinner)
+      const addedItem = await addCart(variantId, currentValue);
 
-      state.inCart = true; // change state to inCart
-
-      if (addedItem?.key != '') {
-        input.dataset.qtyLineItemKey = String(addedItem.key); // set lineItemKey to data-attribute for future managment
+      // Save line item key to input data attribute for future management
+      if (String(addedItem?.key)) {
+        qtyInput.dataset.qtyLineItemKey = String(addedItem.key);
       }
       setLoadingState(false);
     }
-    else if (state.inCart && input.dataset.qtyLineItemKey != '') { // check if product in the cart and we have lineItemKey
+    // If product is in the cart - we are updating quantity
+    else if (String(qtyInput.dataset.qtyLineItemKey)) {
       setLoadingState(true);
-      await changeCart(String(input.dataset.qtyLineItemKey), currentValue);
+      await changeCart(String(qtyInput.dataset.qtyLineItemKey), currentValue);
       setLoadingState(false);
     }
 
-    // Reset flag if qty drops to 0
+    // Reset if quantity drops to 0
     if (currentValue === 0) {
-      state.inCart = false; // change state which indicates that product isn't in the cart
-      delete input.dataset.qtyLineItemKey; // delete data-attribute value if product isn't in the cart anymore
+      qtyInput.dataset.qtyLineItemKey = ''; // remove line item key
     }
-  };
 
-  productCardEls.forEach((card): void => {
-    const cardQtyInput = card.querySelector<HTMLInputElement>('[data-qty-input]');
-    if (!cardQtyInput) return;
-
-    const state = { inCart: Number(cardQtyInput.value) > 0 };
-    const variantId = Number(card.dataset.productCard);
-
-    cardQtyInput.addEventListener('change', (): Promise<void> => changeProductQty(cardQtyInput, state, variantId));
+    // Update the cart drawer after quantity change
+    await renderCartDrawer();
   });
-
-  initQuantitySelector();
 };
 
 export default initProductCard;

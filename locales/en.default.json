@@ -19,6 +19,21 @@
       "decrease": "Decrease quantity",
       "increase": "Increase quantity"
     },
-    "wishlist_button": "Add or remove from wishlist"
+    "wishlist_button": "Add or remove from wishlist",
+    "cart": {
+      "remove_button": "Remove item from the cart"
+    }
+  },
+  "cart_drawer": {
+    "close": "Close cart",
+    "heading": "Your basket",
+    "clear_all_button": "Clear all",
+    "empty": "Your cart is empty",
+    "total_items": {
+      "singular": "item",
+      "plural": "items"
+    },
+    "loyalty_text": "Earn 20 points with this order",
+    "checkout": "Checkout now"
   }
 }

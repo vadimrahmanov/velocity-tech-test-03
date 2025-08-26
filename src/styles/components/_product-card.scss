@@ -4,13 +4,14 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: 100%;
   padding: 20px;
   border-radius: 6px;
   box-shadow: 0 0 15px -2px rgba($color: var.$black, $alpha: 0.1);
 
   &__meta {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
   }
 
@@ -39,6 +40,7 @@
 
   &__image {
     border-radius: 6px;
+    margin-top: auto;
 
     img {
       width: 100%;
@@ -66,8 +68,9 @@
   }
 
   &__controls {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 13px;
   }
 
