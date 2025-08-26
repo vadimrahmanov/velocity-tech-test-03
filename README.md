@@ -32,7 +32,7 @@ This will run the project in development mode.
 
 P.S. I am aware that storing API keys directly in the package files is not great. However, for simplicity and for this test project, I have put them there.
 
-## Website
+## Website
 
 URL: https://vr-velocity-test.myshopify.com/
 <br>
