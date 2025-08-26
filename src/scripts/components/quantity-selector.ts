@@ -43,7 +43,7 @@ const initQuantitySelector = (): void => {
     const delta = buttonType === 'increase' ? 1 : -1; // increment +1 if increase, otherwise -1
 
     changeQuantity(inputEl, delta);
-    inputEl.dispatchEvent(new Event('change', { bubbles: true })); // dispatch event for dependent elements such as product card, cart drawer line item
+    inputEl.dispatchEvent(new Event('change', { bubbles: true })); // dispatch event for dependent elements such as product card, cart drawer line item. "bubbles" is set to true, so that event could bubbles from the target element to its parent elements.
   });
 
   // Delegated change handler

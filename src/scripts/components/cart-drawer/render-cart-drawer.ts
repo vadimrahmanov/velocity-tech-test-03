@@ -5,8 +5,8 @@ const renderCartDrawer = async (): Promise<void> => {
       const cartDrawerMarkup = await fetch(cartDrawerSection);
       if (!cartDrawerMarkup.ok) throw new Error(`HTTP error! status: ${cartDrawerMarkup.status}`);
       return await cartDrawerMarkup.text();
-    } catch (e) {
-      console.error('Failed to fetch cart drawer:', e);
+    } catch (err) {
+      console.error('Failed to fetch cart drawer:', err);
       return null;
     }
   };
@@ -15,7 +15,7 @@ const renderCartDrawer = async (): Promise<void> => {
   const htmlText = await getCartDrawerMarkup();
   const parser = new DOMParser();
   const doc = parser.parseFromString(String(htmlText), 'text/html');
-  const cartDrawerMarkup = doc.querySelector('[data-cart-drawer-render]');
+  const cartDrawerMarkup = doc.querySelector('[data-cart-drawer-section]');
   if (cartDrawerContent && cartDrawerMarkup) {
     cartDrawerContent.innerHTML = cartDrawerMarkup.innerHTML;
   }
