@@ -7,7 +7,7 @@ import syncCollectionCart from '../../lib/syncCollectionCart';
 const initCartLineItem = (container: HTMLElement): void => {
   // Toggle loading state on a line item
   const setItemLoadingState = (element: HTMLElement, loading: boolean): void => {
-    const lineItemEl = element.closest('[data-cart-line-item]') as HTMLDivElement | null;
+    const lineItemEl = element.closest<HTMLDivElement>('[data-cart-line-item]');
     if (!lineItemEl) return;
     lineItemEl.classList.toggle('cart-line-item--loading', loading);
   };
