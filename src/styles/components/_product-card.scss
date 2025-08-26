@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: 100%;
   padding: 20px;
   border-radius: 6px;
   box-shadow: 0 0 15px -2px rgba($color: var.$black, $alpha: 0.1);
@@ -39,6 +40,7 @@
 
   &__image {
     border-radius: 6px;
+    margin-top: auto;
 
     img {
       width: 100%;
