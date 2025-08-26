@@ -1,0 +1,12 @@
+<aside class="cart-drawer" id="cart-drawer" data-cart-drawer>
+  <button class="cart-drawer__close" type="button" data-cart-drawer-close>
+    <span class="visually-hidden">{{ 'cart_drawer.close' | t }}</span>
+    {% render 'icon-plus' %}
+  </button>
+  <div class="cart-drawer__content" data-cart-drawer-content></div>
+</aside>
+<div
+  class="cart-drawer-overlay"
+  aria-hidden="true"
+  data-cart-drawer-overlay
+></div>

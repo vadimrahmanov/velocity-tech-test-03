@@ -10,7 +10,13 @@
     </a>
   </li>
   <li>
-    <a class="header-icon-links__link" href="{{ routes.cart_url }}">
+    <a
+      class="header-icon-links__link"
+      href="{{ routes.cart_url }}"
+      data-cart-drawer-trigger
+      aria-controls="cart-drawer"
+      aria-expanded="false"
+    >
       <span class="visually-hidden">{{ 'accessibility.cart_link' | t }}</span>
       {% render 'icon-cart' %}
       <span class="header-icon-links__cart-count" data-cart-count>{{ cart.item_count }}</span>

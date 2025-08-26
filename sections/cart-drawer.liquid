@@ -1,0 +1,36 @@
+<div data-cart-drawer-render>
+  {% if cart.item_count > 0 %}
+    <div class="cart-drawer__header">
+      <p class="cart-drawer__heading">{{ 'cart_drawer.heading' | t }}</p>
+      <button class="cart-drawer__clear-btn" type="button" data-cart-drawer-clear>
+        {{ 'cart_drawer.clear_all_button' | t }}
+      </button>
+    </div>
+    <ul class="cart-drawer__items">
+      {% for cart_item in cart.items %}
+        <li>
+          {% render 'cart-line-item', line_item: cart_item %}
+        </li>
+      {% endfor %}
+    </ul>
+    <div class="cart-drawer__summary">
+      <div class="cart-drawer__total">
+        <p class="cart-drawer__total-text">
+          <span data-cart-count>{{ cart.item_count }}</span>
+          {% if cart.item_count == 1 %}
+            {{ 'cart_drawer.total_items.singular' | t }}
+          {% else %}
+            {{ 'cart_drawer.total_items.plural' | t }}
+          {% endif %}
+        </p>
+        <p class="cart-drawer__total-price">{{ cart.total_price | money }}</p>
+      </div>
+      <p class="cart-drawer__loyalty">{{ 'cart_drawer.loyalty_text' | t }}</p>
+      <a class="cart-drawer__checkout" href="{{ routes.root_url }}checkout">{{ 'cart_drawer.checkout' | t }}</a>
+    </div>
+  {% else %}
+    <div class="cart-drawer__empty">
+      <p>{{ 'cart_drawer.empty' | t }}</p>
+    </div>
+  {% endif %}
+</div>

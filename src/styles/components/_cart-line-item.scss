@@ -1,0 +1,62 @@
+@use "../utils/variables" as var;
+
+.cart-line-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: var.$white;
+  border-radius: 6px;
+
+  &--loading {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &--loading .icon-spinner {
+    display: block;
+  }
+
+  &__content {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  &__image {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+
+    img {
+      border-radius: 6px;
+    }
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  &__option {
+    font-size: 12px;
+    color: var.$gray;
+  }
+
+  &__remove {
+    padding: 5px;
+    margin-left: auto;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__price {
+    font-size: 14px;
+    font-weight: 700;
+  }
+}

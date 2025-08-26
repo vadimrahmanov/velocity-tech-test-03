@@ -1,7 +1,6 @@
-const initQuantitySelector = (): void => {
-  const qtySelectorEls = document.querySelectorAll<HTMLDivElement>('[data-qty-selector]');
-  if (!qtySelectorEls.length) return;
+import { DOM } from '../utils/constants';
 
+const initQuantitySelector = (): void => {
   // Enable or disable quantity buttons based on current input value
   const updateButtons = (inputEl: HTMLInputElement): void => {
     const decreaseBtn = inputEl.parentElement?.querySelector<HTMLButtonElement>('[data-qty-button="decrease"]');
@@ -30,22 +29,35 @@ const initQuantitySelector = (): void => {
     updateButtons(inputEl);
   };
 
-  qtySelectorEls.forEach((selector): void => {
-    const inputEl = selector.querySelector<HTMLInputElement>('[data-qty-input]');
-    const buttonEls = selector.querySelectorAll<HTMLButtonElement>('[data-qty-button]');
-    if (!inputEl || !buttonEls.length) return;
+  // Delegated click handler for +/-
+  document.addEventListener('click', (evt: Event): void => {
+    const target = evt.target as HTMLElement;
+    const qtyButton = target.closest<HTMLButtonElement>('[data-qty-button]');
+    if (!qtyButton) return;
 
-    updateButtons(inputEl);
+    const qtySelector = qtyButton.closest<HTMLElement>('[data-qty-selector]');
+    const inputEl = qtySelector?.querySelector<HTMLInputElement>(DOM.QTY_INPUT);
+    if (!inputEl) return;
 
-    buttonEls.forEach((btn): void => {
-      const buttonType = btn.getAttribute('data-qty-button');
-      btn.addEventListener('click', (): void => {
-        changeQuantity(inputEl, buttonType === 'increase' ? 1 : -1);
-        inputEl.dispatchEvent(new Event('change'));
-      });
-    });
-    inputEl.addEventListener('change', (): void => changeQuantity(inputEl));
+    const buttonType = qtyButton.dataset.qtyButton; // get button type (+ or -)
+    const delta = buttonType === 'increase' ? 1 : -1; // increment +1 if increase, otherwise -1
+
+    changeQuantity(inputEl, delta);
+    inputEl.dispatchEvent(new Event('change', { bubbles: true })); // dispatch event for dependent elements such as product card, cart drawer line item
   });
+
+  // Delegated change handler
+  document.addEventListener('change', (evt: Event): void => {
+    const target = evt.target as HTMLElement;
+    const inputEl = target.closest<HTMLInputElement>(DOM.QTY_INPUT);
+    if (!inputEl) return;
+
+    changeQuantity(inputEl);
+  });
+
+  // Initial sync for all selectors
+  const qtyInputEls = document.querySelectorAll<HTMLInputElement>(DOM.QTY_INPUT);
+  qtyInputEls.forEach((inputEl): void => updateButtons(inputEl));
 };
 
 export default initQuantitySelector;
